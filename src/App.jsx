@@ -1,26 +1,40 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, PerspectiveCamera, useFBX } from '@react-three/drei';
 import * as THREE from 'three';
-import { SunPosition } from './sunPosition';
+import Sun from './sun';
 import './App.css';
 
 function App() {
   const time = new Date();
-  time.setHours(12);
+  time.setHours(18);
+  time.setMinutes(0);
   time.setMonth(9);
 
-  const rawSunPosition = SunPosition(15, time, -0.4);
-  const sunPosition = [rawSunPosition[0], rawSunPosition[2], rawSunPosition[1]];
-  let sunIntensity = rawSunPosition[2];
-  if (sunIntensity < 0) sunIntensity = 0;
-
   const Apartment = () => {
+    let pos = new THREE.Vector3(0, 0, 0);
     const fbx = useFBX('WohnungVC.fbx');
+
+    const material = new THREE.MeshPhysicalMaterial({
+      color: 0xffffff,
+      metalness: 0,
+      roughness: 0.3,
+      ior: 1.5,
+      envMapIntensity: 1,
+      transmission: 0.5,
+      opacity: 1,
+    });
 
     if (fbx) {
       fbx.traverse((child) => {
         if (child.isMesh) {
+          if (child.name === 'LampeRundWohnzimmer001') {
+            console.log(child.position);
+            pos.x = child.position.x / 250;
+            pos.y = child.position.y / 250;
+            pos.z = child.position.z / 250;
+            child.material = material;
+          }
           child.castShadow = true;
           child.receiveShadow = true;
         }
@@ -28,16 +42,23 @@ function App() {
     }
 
     return (
-      <mesh castShadow receiveShadow>
-        <primitive
-          object={fbx}
-          position={[-4, 0, 0]}
-          scale={0.004}
-          castShadow
-          receiveShadow
-        />
-        <shadowMaterial attach="material" opacity={0.3} />
-      </mesh>
+      <>
+        <mesh castShadow receiveShadow>
+          <primitive
+            object={fbx}
+            position={[0, 0, 0]}
+            scale={0.004}
+            castShadow
+            receiveShadow
+          />
+          <shadowMaterial attach="material" opacity={0.3} />
+        </mesh>
+        {/*<mesh position={pos}>
+          <sphereGeometry args={[0.1, 100, 100, 1]} />
+          <meshStandardMaterial color="#ffff00" />
+        </mesh>*/}
+        <pointLight position={pos} intensity={4} color="#ffffCC" castShadow />
+      </>
     );
   };
 
@@ -47,25 +68,14 @@ function App() {
       shadows
       onCreated={({ gl }) => {
         gl.shadowMap.enabled = true;
-        gl.shadowMap.type = THREE.PCFSoftShadowMap; // Use soft shadows
+        gl.shadowMap.type = THREE.PCFSoftShadowMap;
       }}
     >
-      <PerspectiveCamera makeDefault position={[0, 10, 15]} />
       <OrbitControls />
-      <Apartment receiveShadow castShadow />
-      <mesh position={sunPosition}>
-        <sphereGeometry args={[0.3, 100, 100, 1]} />
-        <meshStandardMaterial color="#ffff00" />
-      </mesh>
+      <PerspectiveCamera makeDefault position={[0, 10, 15]} />
+      <Sun time={time} />
 
-      <spotLight
-        position={sunPosition}
-        intensity={sunIntensity * 50}
-        color="#FFF"
-        castShadow
-        penumbra={1}
-      />
-      <ambientLight intensity={sunIntensity * 0.2 + 0.3} />
+      <Apartment receiveShadow castShadow />
     </Canvas>
   );
 }
