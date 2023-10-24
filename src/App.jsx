@@ -5,6 +5,8 @@ import * as THREE from 'three';
 import Sun from './sun';
 import './App.css';
 
+const X_OFFSET = 4.4;
+
 function App() {
   const time = new Date();
   time.setHours(18);
@@ -30,7 +32,7 @@ function App() {
         if (child.isMesh) {
           if (child.name === 'LampeRundWohnzimmer001') {
             console.log(child.position);
-            pos.x = child.position.x / 250;
+            pos.x = child.position.x / 250 - X_OFFSET;
             pos.y = child.position.y / 250;
             pos.z = child.position.z / 250;
             child.material = material;
@@ -46,7 +48,7 @@ function App() {
         <mesh castShadow receiveShadow>
           <primitive
             object={fbx}
-            position={[0, 0, 0]}
+            position={[-X_OFFSET, 0, 0]}
             scale={0.004}
             castShadow
             receiveShadow
