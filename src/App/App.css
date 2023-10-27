@@ -21,13 +21,47 @@ body {
 
 .view {
   background-color: #222;
-  border-radius: 2rem;
+  border-radius: 2rem 2rem 0 0;
   margin: 0rem 2rem;
-  height: calc(100vh - 11rem);
+  height: calc(100vh - 20rem);
   max-height: calc((100vw - 2rem) * 0.75);
 }
 
 .selector-container {
   display: flex;
   padding: 0;
+}
+
+.light-button-container {
+  margin: 0 2rem;
+  padding: 2rem;
+  background-color: #222;
+  border-radius: 0 0 2rem 2rem;
+}
+
+.light-button-scroll {
+  display: flex;
+  overflow-x: auto;
+  white-space: nowrap;
+  overflow: scroll;
+  scrollbar-width: 12px;
+}
+
+.light-button-scroll::-webkit-scrollbar {
+  width: 0px; /* Set the width of the scrollbar */
+  height: 0.5rem;
+}
+
+.light-button-scroll::-webkit-scrollbar-thumb {
+  background: #666666;
+  border-radius: 10px;
+}
+
+.light-button-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.light-button-scroll::-moz-range-thumb {
+  background: #666666;
+  border-radius: 6px;
 }

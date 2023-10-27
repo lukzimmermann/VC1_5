@@ -9,10 +9,12 @@ import './view.css';
 
 function View(props) {
   const [time, setTime] = useState(new Date());
+  const [lights, setLights] = useState(new Date());
 
   useEffect(() => {
     setTime(props.time);
-  }, [props.time]);
+    setLights(props.lights);
+  }, [props]);
 
   return (
     <Canvas
@@ -26,7 +28,7 @@ function View(props) {
       <OrbitControls />
       <PerspectiveCamera makeDefault position={[0, 10, 15]} />
       <Sun time={time} />
-      <Light lights={props.lights} />
+      <Light lights={lights} />
       <Apartment receiveShadow castShadow />
     </Canvas>
   );

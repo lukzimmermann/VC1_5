@@ -11,13 +11,17 @@ function Selector(props) {
   }, [pointer]);
 
   const btnLeft = () => {
-    if (pointer < 1) setPointer(props.maxIndex - 1);
+    if (pointer < 1) setPointer(props.maxIndex);
     else setPointer((prevPointer) => prevPointer - 1);
   };
 
   const btnRight = () => {
-    if (pointer > props.maxIndex - 2) setPointer(0);
+    if (pointer > props.maxIndex - 1) setPointer(0);
     else setPointer((prevPointer) => prevPointer + 1);
+  };
+
+  const style = {
+    width: props.width,
   };
 
   return (
@@ -25,7 +29,9 @@ function Selector(props) {
       <button className="btn-left" onClick={btnLeft}>
         {left}
       </button>
-      <div className="value-box">{props.fun(pointer)}</div>
+      <div className="value-box" style={style}>
+        {props.fun(pointer)}
+      </div>
       <button className="btn-right" onClick={btnRight}>
         {right}
       </button>

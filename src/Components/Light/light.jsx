@@ -16,7 +16,7 @@ function Light(props) {
           key={light.id}
           position={light.coordinates}
           intensity={light.brightness / 50}
-          color="#ffffdd"
+          color="#ffffcc"
         />
       ))}
     </>
