@@ -1,5 +1,4 @@
 import { SunPosition } from './sunPosition';
-import './App.css';
 
 function Sun(props) {
   let time = new Date();

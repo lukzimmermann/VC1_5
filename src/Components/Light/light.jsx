@@ -8,12 +8,12 @@ function Light(props) {
       lightList.push(props.lights[i].lights[j]);
     }
   }
-  lightList.map((light) => console.log(light));
 
   return (
     <>
       {lightList.map((light) => (
         <pointLight
+          key={light.id}
           position={light.coordinates}
           intensity={light.brightness / 50}
           color="#ffffdd"

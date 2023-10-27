@@ -1,12 +1,10 @@
 import React, { useRef, useState } from 'react';
 import './App.css';
-import View from './view';
+import View from '../Components/View/view';
+import Selector from '../Components/Selector/selector';
 
 function App() {
-  const time = new Date();
-  time.setHours(23);
-  time.setMinutes(0);
-  time.setMonth(5);
+  const [time, setTime] = useState(new Date());
 
   const lights = [
     {
@@ -43,7 +41,7 @@ function App() {
         {
           id: '4038',
           name: 'Wohnzimmer.005',
-          on: true,
+          on: false,
           brightness: 255,
           coordinates: [4.2, 0.64, 0.4],
         },
@@ -143,7 +141,7 @@ function App() {
         {
           id: '4093',
           name: 'Küche.001',
-          on: false,
+          on: true,
           brightness: 255,
           coordinates: [-2.65, 1, 2.75],
         },
@@ -151,9 +149,66 @@ function App() {
     },
   ];
 
+  const hours = [
+    0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+    21, 22, 23,
+  ];
+
+  const monthsIndex = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
+  const months = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+  ];
+
+  const hoursToString = (hour) => {
+    if (hour > 9) return hour + ':00';
+    else return '0' + hour + ':00';
+  };
+
+  const monthToString = (month) => {
+    return months[month];
+  };
+
+  const hourChanged = (value) => {
+    const newTime = new Date(time);
+    newTime.setHours(value);
+    setTime(newTime);
+    console.log(time);
+  };
+
+  const monthChanged = (value) => {
+    const newTime = new Date(time);
+    newTime.setMonth(value);
+    setTime(newTime);
+  };
+
   return (
     <div>
       <p className="title">Wohnung</p>
+      <div className="selector-container">
+        <Selector
+          list={hours}
+          initialIndex={new Date().getHours()}
+          fun={hoursToString}
+          onValueChange={hourChanged}
+        />
+        <Selector
+          list={monthsIndex}
+          initialIndex={new Date().getMonth()}
+          fun={monthToString}
+          onValueChange={monthChanged}
+        />
+      </div>
       <div className="view">
         <View time={time} lights={lights} />
       </div>

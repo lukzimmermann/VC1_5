@@ -29,6 +29,7 @@ export function SunPosition(
   const z_theta = baseAngle;
   const x_theta = Math.PI * -0.5 + sunPosition.altitude;
   const sun_angle = Math.PI * (sunProgress - 0.5) * -1;
+
   let point = [Math.sin(sun_angle) * radius, 0, Math.cos(sun_angle) * radius];
 
   const R_z = [

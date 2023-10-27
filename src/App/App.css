@@ -14,9 +14,6 @@ body {
   width: 100vw;
 }
 
-.canvas {
-}
-
 .title {
   margin: 2rem;
   font-size: large;
@@ -25,7 +22,12 @@ body {
 .view {
   background-color: #222;
   border-radius: 2rem;
-  margin: 2rem;
+  margin: 0rem 2rem;
+  height: calc(100vh - 11rem);
+  max-height: calc((100vw - 2rem) * 0.75);
+}
 
-  height: calc(100vh - 10rem);
+.selector-container {
+  display: flex;
+  padding: 0;
 }
