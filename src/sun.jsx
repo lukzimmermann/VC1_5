@@ -22,10 +22,10 @@ function Sun(props) {
         <sphereGeometry args={[0.3, 100, 100, 1]} />
         <meshStandardMaterial color="#ffff00" />
       </mesh>
-      <ambientLight intensity={sunIntensity * 0.2 + 0.3} />
+      <ambientLight intensity={sunIntensity * 0.1 + 0.3} />
       <spotLight
         position={sunPosition}
-        intensity={sunIntensity * 50}
+        intensity={sunIntensity * 40}
         color="#FFF"
         castShadow
       />
