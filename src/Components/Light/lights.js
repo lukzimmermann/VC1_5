@@ -1,4 +1,4 @@
-export const lights = [
+const Lights = [
   {
     name: 'Wohnzimmer',
     lights: [
@@ -57,7 +57,7 @@ export const lights = [
       {
         id: '4040',
         name: 'Kinderzimmer.001',
-        on: false,
+        on: true,
         brightness: 255,
         coordinates: [2.5, 1.5, -1.15],
       },
@@ -69,14 +69,14 @@ export const lights = [
       {
         id: '4041',
         name: 'Korridor.001',
-        on: false,
+        on: true,
         brightness: 255,
         coordinates: [0.15, 1.8, -2.25],
       },
       {
         id: '4042',
         name: 'Korridor.002',
-        on: false,
+        on: true,
         brightness: 255,
         coordinates: [-2, 1.8, 0.8],
       },
@@ -88,21 +88,21 @@ export const lights = [
       {
         id: '4043',
         name: 'Schlafzimmer.001',
-        on: false,
+        on: true,
         brightness: 255,
         coordinates: [0.85, 0.5, -3.75],
       },
       {
         id: '4044',
         name: 'Schlafzimmer.002',
-        on: false,
+        on: true,
         brightness: 255,
         coordinates: [0.85, 1, -3.75],
       },
       {
         id: '4045',
         name: 'Schlafzimmer.003',
-        on: false,
+        on: true,
         brightness: 255,
         coordinates: [4.25, 1, -4.75],
       },
@@ -133,10 +133,12 @@ export const lights = [
       {
         id: '4093',
         name: 'Küche.001',
-        on: false,
+        on: true,
         brightness: 255,
         coordinates: [-2.65, 1, 2.75],
       },
     ],
   },
 ];
+
+export default Lights;
