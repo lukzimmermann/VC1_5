@@ -22,6 +22,26 @@ function App() {
     setTime(newTime);
   };
 
+  const handleClick = (button) => {
+    setLights((prevLights) =>
+      prevLights.map((room) => {
+        if (room.name === button.title) {
+          const newBrightness = room.on ? 255 : 0;
+          return {
+            ...room,
+            on: !room.on,
+            lights: room.lights.map((light) => ({
+              ...light,
+              brightness: newBrightness,
+              on: !room.on,
+            })),
+          };
+        }
+        return room;
+      })
+    );
+  };
+
   return (
     <div>
       <p className="title">Wohnung</p>
@@ -47,7 +67,12 @@ function App() {
       <div className="light-button-container">
         <div className="light-button-scroll">
           {lights.map((light) => (
-            <LightButton key={light.name} title={light.name} />
+            <LightButton
+              key={light.name}
+              title={light.name}
+              on={light.on}
+              onClick={handleClick}
+            />
           ))}
         </div>
       </div>

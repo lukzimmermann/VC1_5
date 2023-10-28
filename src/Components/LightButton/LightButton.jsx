@@ -1,17 +1,18 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './LightButton.css';
 
 function LightButton(props) {
-  const [state, setState] = useState(false);
+  const [state, setState] = useState(props.on);
 
   const buttonClick = () => {
     if (state) setState(false);
     else setState(true);
+    props.onClick(props);
   };
 
   return (
     <button
-      className={state ? 'light-button active-button' : 'light-button'}
+      className={state ? 'light-button' : 'light-button active-button'}
       onClick={buttonClick}
     >
       <p

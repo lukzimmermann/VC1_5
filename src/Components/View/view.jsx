@@ -6,10 +6,11 @@ import Apartment from '../Apartment/apartment';
 import Light from '../Light/light';
 import { useEffect, useState } from 'react';
 import './view.css';
+import Lights from '../Light/lights';
 
 function View(props) {
   const [time, setTime] = useState(new Date());
-  const [lights, setLights] = useState(new Date());
+  const [lights, setLights] = useState(Lights);
 
   useEffect(() => {
     setTime(props.time);

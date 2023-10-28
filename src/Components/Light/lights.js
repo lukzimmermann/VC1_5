@@ -1,6 +1,7 @@
 const Lights = [
   {
     name: 'Wohnzimmer',
+    on: true,
     lights: [
       {
         id: '4034',
@@ -41,6 +42,7 @@ const Lights = [
   },
   {
     name: 'Esstisch',
+    on: false,
     lights: [
       {
         id: '4039',
@@ -53,6 +55,7 @@ const Lights = [
   },
   {
     name: 'Küche',
+    on: false,
     lights: [
       {
         id: '4093',
@@ -65,6 +68,7 @@ const Lights = [
   },
   {
     name: 'Korridor',
+    on: false,
     lights: [
       {
         id: '4041',
@@ -84,6 +88,7 @@ const Lights = [
   },
   {
     name: 'Schlafzimmer',
+    on: false,
     lights: [
       {
         id: '4043',
@@ -110,6 +115,7 @@ const Lights = [
   },
   {
     name: 'Kinderzimmer',
+    on: false,
     lights: [
       {
         id: '4040',
@@ -122,6 +128,7 @@ const Lights = [
   },
   {
     name: 'Büro',
+    on: true,
     lights: [
       {
         id: '4046',
