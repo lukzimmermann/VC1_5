@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
+import * as THREE from 'three';
 
 function Light(props) {
   const [lights, setLights] = useState(props.lights);
 
   useEffect(() => {
-    console.log(props.lights[0].lights[0]);
     setLights(props.lights);
   }, [props]);
 
@@ -14,9 +14,9 @@ function Light(props) {
         room.lights.map((light) => (
           <pointLight
             key={light.id}
-            position={light.coordinates}
-            intensity={light.brightness / 50}
-            color="#ffffcc"
+            position={light.coordinate}
+            intensity={light.on ? light.brightness / 10000 : 0}
+            color={new THREE.Color().fromArray(light.color)}
           />
         ))
       )}

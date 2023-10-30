@@ -12,7 +12,7 @@ function LightButton(props) {
 
   return (
     <button
-      className={state ? 'light-button' : 'light-button active-button'}
+      className={state ? 'light-button active-button' : 'light-button'}
       onClick={buttonClick}
     >
       <p

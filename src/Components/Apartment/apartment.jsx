@@ -5,7 +5,7 @@ const X_OFFSET = 4.4;
 
 function Apartment() {
   let pos = new THREE.Vector3(0, 0, 0);
-  const fbx = useFBX('WohnungVC.fbx');
+  const fbx = useFBX('WohnungVC2.fbx');
 
   const material = new THREE.MeshPhysicalMaterial({
     color: 0xffffff,
@@ -16,15 +16,27 @@ function Apartment() {
     transmission: 0.5,
     opacity: 1,
   });
+  const schrimMaterial = new THREE.MeshPhysicalMaterial({
+    color: 0xdad4b1,
+    metalness: 0,
+    roughness: 0.3,
+    ior: 1.5,
+    envMapIntensity: 1,
+    transmission: 0.1,
+    opacity: 1,
+  });
 
   if (fbx) {
     fbx.traverse((child) => {
       if (child.isMesh) {
         if (child.name === 'LampeRundWohnzimmer001') {
-          pos.x = child.position.x / 250 - X_OFFSET;
-          pos.y = child.position.y / 250;
-          pos.z = child.position.z / 250;
           child.material = material;
+        }
+        if (
+          child.name === 'LampenSchirm001' ||
+          child.name === 'LampenSchirm002'
+        ) {
+          child.material = schrimMaterial;
         }
         child.castShadow = true;
         child.receiveShadow = true;

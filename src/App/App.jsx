@@ -1,14 +1,31 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 import View from '../Components/View/view';
 import Selector from '../Components/Selector/selector';
 import Lights from '../Components/Light/lights';
 import { hoursToString, monthToString } from '../Utils/Utils';
 import LightButton from '../Components/LightButton/LightButton';
+import { getRooms } from '../Utils/hue';
 
 function App() {
   const [time, setTime] = useState(new Date());
   const [lights, setLights] = useState(Lights);
+
+  setInterval(updateLight, 1000);
+
+  useEffect(() => {
+    getLights();
+  }, []);
+
+  function updateLight() {
+    setTime(new Date());
+    getLights();
+  }
+
+  async function getLights() {
+    const rooms = await await getRooms();
+    setLights(rooms);
+  }
 
   const hourChanged = (value) => {
     const newTime = new Date(time);
@@ -23,6 +40,7 @@ function App() {
   };
 
   const handleClick = (button) => {
+    console.log(button);
     setLights((prevLights) =>
       prevLights.map((room) => {
         if (room.name === button.title) {
@@ -68,7 +86,8 @@ function App() {
         <div className="light-button-scroll">
           {lights.map((light) => (
             <LightButton
-              key={light.name}
+              key={light.id}
+              roomId={light.id}
               title={light.name}
               on={light.on}
               onClick={handleClick}
