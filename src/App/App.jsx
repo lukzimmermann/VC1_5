@@ -5,27 +5,10 @@ import Selector from '../Components/Selector/selector';
 import Lights from '../Components/Light/lights';
 import { hoursToString, monthToString } from '../Utils/Utils';
 import LightButton from '../Components/LightButton/LightButton';
-import { getRooms } from '../Utils/hue';
 
 function App() {
   const [time, setTime] = useState(new Date());
   const [lights, setLights] = useState(Lights);
-
-  setInterval(updateLight, 1000);
-
-  useEffect(() => {
-    getLights();
-  }, []);
-
-  function updateLight() {
-    setTime(new Date());
-    getLights();
-  }
-
-  async function getLights() {
-    const rooms = await await getRooms();
-    setLights(rooms);
-  }
 
   const hourChanged = (value) => {
     const newTime = new Date(time);
@@ -40,11 +23,11 @@ function App() {
   };
 
   const handleClick = (button) => {
-    console.log(button);
+    console.log(button.title);
     setLights((prevLights) =>
       prevLights.map((room) => {
         if (room.name === button.title) {
-          const newBrightness = room.on ? 255 : 0;
+          const newBrightness = room.on ? 0 : 100;
           return {
             ...room,
             on: !room.on,
@@ -58,11 +41,12 @@ function App() {
         return room;
       })
     );
+    console.log(lights);
   };
 
   return (
     <div>
-      <p className="title">Wohnung</p>
+      <h1 className="title">Meine Wohnung</h1>
       <div className="selector-container">
         <Selector
           initialIndex={new Date().getHours()}

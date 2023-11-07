@@ -4,6 +4,10 @@ import './LightButton.css';
 function LightButton(props) {
   const [state, setState] = useState(props.on);
 
+  useEffect(() => {
+    setState(props.on);
+  }, [props.on]);
+
   const buttonClick = () => {
     if (state) setState(false);
     else setState(true);
