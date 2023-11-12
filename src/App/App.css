@@ -1,3 +1,7 @@
+:root {
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+    'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
 .App {
   font-family: sans-serif;
   text-align: center;
@@ -6,7 +10,7 @@
 body {
   padding: 0;
   margin: 0;
-  background-color: #111;
+  background-color: rgb(24, 24, 30);
 }
 
 #root {
@@ -20,11 +24,11 @@ body {
 }
 
 .view {
-  background-color: #222;
+  background-color: rgb(44, 44, 50);
   border-radius: 2rem 2rem 0 0;
   margin: 0rem 2rem;
-  height: calc(100vh - 20rem);
-  max-height: calc((100vw - 2rem) * 0.75);
+  height: calc(100vh - 25rem);
+  max-height: calc((100vw - 5rem) * 0.75);
 }
 
 .selector-container {
@@ -35,7 +39,7 @@ body {
 .light-button-container {
   margin: 0 2rem;
   padding: 2rem;
-  background-color: #222;
+  background-color: rgb(44, 44, 50);
   border-radius: 0 0 2rem 2rem;
 }
 
@@ -64,4 +68,28 @@ body {
 .light-button-scroll::-moz-range-thumb {
   background: #666666;
   border-radius: 6px;
+}
+
+.title {
+  color: white;
+  font-size: 2rem;
+  text-align: center;
+}
+
+.decripton-container {
+  width: calc(100vw - 10%);
+  max-width: 60rem;
+  background-color: rgb(24, 24, 30);
+  padding: 2rem 2rem;
+}
+
+h3 {
+  color: rgb(200, 200, 200);
+  margin: 0;
+  font-size: 20px;
+}
+
+p {
+  font-size: 14px;
+  color: rgb(160, 160, 160);
 }
